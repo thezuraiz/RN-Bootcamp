@@ -10,7 +10,7 @@ export default function Index() {
         backgroundColor: "#2b2b2bff",
       }}
     >
-      <Text style={{ color: "#ffffff" }}>Hello Zuraiz</Text>
+      <Text className="text-white">Hello Zuraiz</Text>
     </View>
   );
 }
