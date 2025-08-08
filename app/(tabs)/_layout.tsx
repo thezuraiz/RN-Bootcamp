@@ -34,6 +34,12 @@ const TabIcon = ({ focused, title, icon }: TabIconProps) =>
   );
 
 const _layout = () => {
+  let _tabs = [
+    { label: "index", name: "Home", icon: icons.home },
+    { label: "search", name: "Search", icon: icons.search },
+    { label: "saved", name: "Saved", icon: icons.save },
+    { label: "profile", name: "Profile", icon: icons.person },
+  ];
   return (
     <Tabs
       screenOptions={{
@@ -56,51 +62,20 @@ const _layout = () => {
         },
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{
-          headerShown: false,
-          title: "Name",
-          tabBarShowLabel: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} title="Name" icon={icons.home} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="search"
-        options={{
-          headerShown: false,
-          title: "search",
-          tabBarShowLabel: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} title="search" icon={icons.search} />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
-        name="saved"
-        options={{
-          headerShown: false,
-          title: "saved",
-          tabBarShowLabel: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} title="saved" icon={icons.save} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          headerShown: false,
-          title: "profile",
-          tabBarShowLabel: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} title="profile" icon={icons.person} />
-          ),
-        }}
-      />
+      {_tabs.map((e, i) => (
+        <Tabs.Screen
+          key={i}
+          name={e.label}
+          options={{
+            headerShown: false,
+            title: e.label,
+            tabBarShowLabel: false,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon focused={focused} title={e.name} icon={e.icon} />
+            ),
+          }}
+        />
+      ))}
     </Tabs>
   );
 };
