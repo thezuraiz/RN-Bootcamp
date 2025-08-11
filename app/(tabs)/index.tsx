@@ -1,3 +1,4 @@
+import MovieCard from "@/components/movie_card";
 import CustomSearchBar from "@/components/searchBar";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
@@ -5,7 +6,14 @@ import { images } from "@/constants/images";
 import { fetchMovies } from "@/services/api";
 import useFetch from "@/services/useFetch";
 import { useRouter } from "expo-router";
-import { ActivityIndicator, Image, ScrollView, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
 
 export default function Index() {
   let router = useRouter();
@@ -13,7 +21,7 @@ export default function Index() {
     data: movies,
     loading: movieLoading,
     error: moviesError,
-  } = useFetch(() => fetchMovies({ query: "" }));
+  } = useFetch(() => fetchMovies({ query: "iron man" }));
 
   return (
     <View className="flex-1 bg-primary">
@@ -39,11 +47,25 @@ export default function Index() {
               onPress={() => router.push("/search")}
               placeholder="Search for a movie"
             />
-            <View>
+            <>
               <Text className="mt-5 mb-3 text-lg font-bold text-white">
-                Latest Movies ({movies?.total_results})
+                Latest Movies
               </Text>
-            </View>
+            </>
+            <FlatList<Movie>
+              data={movies?.results}
+              scrollEnabled={false}
+              className="pb-32 mt-2"
+              numColumns={3}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => <MovieCard {...item} />}
+              columnWrapperStyle={{
+                justifyContent: "flex-start",
+                gap: 20,
+                paddingRight: 5,
+                marginBottom: 10,
+              }}
+            />
           </View>
         )}
       </ScrollView>

@@ -12,14 +12,16 @@ export const fetchMovies = async ({
 }: {
   query: string;
 }): Promise<MoviesResponse> => {
-  //   console.log(`ENV: ${process.env.API_Read_Access_Token}`);
-  const url = query
-    ? `${TBDB.BASE_URL}/discover/movie?query=${encodeURIComponent(query)}`
-    : `${TBDB.BASE_URL}/discover/movie?sort_by=popularity.desc`;
+  console.log(`query: ${query}`);
+  const url =
+    query != ""
+      ? `${TBDB.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
+      : `${TBDB.BASE_URL}/discover/movie?sort_by=popularity.desc`;
   const options = {
     method: "GET",
     headers: TBDB.headers,
   };
+  console.log(`url: ${url}`);
 
   try {
     const response = await fetch(url, options);
@@ -27,8 +29,7 @@ export const fetchMovies = async ({
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    // console.log("Fetched movies:", data.results);
-    return data.results;
+    return data;
   } catch (error) {
     console.error("Error fetching movies:", error);
     throw error;
