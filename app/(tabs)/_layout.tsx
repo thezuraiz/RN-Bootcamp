@@ -33,7 +33,7 @@ const TabIcon = ({ focused, title, icon }: TabIconProps) =>
     </View>
   );
 
-const _layout = () => {
+const _Layout = () => {
   let _tabs = [
     { label: "index", name: "Home", icon: icons.home },
     { label: "search", name: "Search", icon: icons.search },
@@ -51,14 +51,15 @@ const _layout = () => {
           alignItems: "center",
         },
         tabBarStyle: {
-          backgroundColor: "#0f0d23",
+          backgroundColor: "#0f0D23",
           borderRadius: 50,
-          marginHorizontal: 10,
+          marginHorizontal: 20,
           marginBottom: 36,
           borderColor: "0f0d23",
           borderWidth: 1,
           overflow: "hidden",
           height: 52,
+          position: "absolute",
         },
       }}
     >
@@ -80,4 +81,4 @@ const _layout = () => {
   );
 };
 
-export default _layout;
+export default _Layout;
