@@ -21,11 +21,11 @@ export default function Index() {
     data: movies,
     loading: movieLoading,
     error: moviesError,
-  } = useFetch(() => fetchMovies({ query: "iron man" }));
+  } = useFetch<MoviesResponse>(() => fetchMovies({ query: "iron man" }));
 
   return (
     <View className="flex-1 bg-primary">
-      <Image source={images.bg} className="absolute z-0 w-full" />
+      <Image source={images.bg} className="absolute w-full z-0s" />
       <ScrollView
         showsVerticalScrollIndicator={false}
         className="flex-1 px-5"
@@ -46,13 +46,14 @@ export default function Index() {
             <CustomSearchBar
               onPress={() => router.push("/search")}
               placeholder="Search for a movie"
+              onChangeText={() => {}}
             />
             <>
               <Text className="mt-5 mb-3 text-lg font-bold text-white">
                 Latest Movies
               </Text>
             </>
-            <FlatList<Movie>
+            <FlatList
               data={movies?.results}
               scrollEnabled={false}
               className="pb-32 mt-2"
