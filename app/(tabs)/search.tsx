@@ -24,7 +24,7 @@ const Search = () => {
       const timeoutId = setTimeout(async () => {
         await refreshData();
 
-        if (movies?.results.length > 0 && movies?.results[0]) {
+        if (movies?.results.length! > 0 && movies?.results[0]) {
           await updateSearchCount(searchBar, movies!.results[0]);
         }
       }, 500);
@@ -85,7 +85,7 @@ const Search = () => {
               </Text>
             )}
 
-            {searchBar && movies?.results.length > 0 && (
+            {searchBar && movies?.results.length! > 0 && (
               <Text className="mt-5 mb-3 text-lg font-bold text-white">
                 Search Results for {searchBar}
               </Text>
