@@ -64,7 +64,7 @@ export default function Index() {
                 </Text>
                 <FlatList
                   data={trendingMovies}
-                  keyExtractor={(item) => item.movie_id.toString()}
+                  // keyExtractor={(item) => item.movie_id.toString()}
                   renderItem={({ item, index }) => (
                     <TrendingCard movie={item} />
                   )}
