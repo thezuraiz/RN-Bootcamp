@@ -3,6 +3,7 @@ import CustomSearchBar from "@/components/searchBar";
 import TrendingCard from "@/components/TrendingCard";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
+import { MoviesResponse } from "@/interface/interfaces";
 
 import { fetchMovies } from "@/services/api";
 import { getTrendingMovie } from "@/services/appwrite";
@@ -28,7 +29,7 @@ export default function Index() {
     data: movies,
     loading: movieLoading,
     error: moviesError,
-  } = useFetch<MoviesResponse>(() => fetchMovies({ query: "iron man" }));
+  } = useFetch<MoviesResponse>(() => fetchMovies({ query: "" }));
 
   return (
     <View className="flex-1 bg-primary">

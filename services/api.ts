@@ -1,3 +1,5 @@
+import { MovieDetailResponse, MoviesResponse } from "@/interface/interfaces";
+
 export const TBDB = {
   BASE_URL: "https://api.themoviedb.org/3",
   API_KEY: process.env.EXPO_PUBLIC_API_Key,
@@ -47,3 +49,25 @@ export const fetchMovies = async ({
 //   .then((res) => res.json())
 //   .then((json) => console.log(json))
 //   .catch((err) => console.error(err));
+
+export const fetchMovieDetails = async (
+  movieId: string
+): Promise<MovieDetailResponse> => {
+  try {
+    let response = await fetch(
+      `${TBDB.BASE_URL}/movie/${movieId}?api_key=${TBDB.API_KEY}`,
+      {
+        method: "GET",
+        headers: TBDB.headers,
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Failed to fetch the api: ${response.status}`);
+    }
+    let data = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error fetching movie details:", error);
+    throw error;
+  }
+};

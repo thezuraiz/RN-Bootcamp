@@ -42,7 +42,7 @@ const Search = () => {
         resizeMode="cover"
       />
 
-      <FlatList<Movie>
+      <FlatList
         data={movies?.results ?? []}
         className="px-5"
         numColumns={3}
